@@ -1,8 +1,11 @@
+# CIRCULAR QUEUE 
 class queuel:
     def __init__(self,size):
         self.n= size
         self.queue = [None]*size
         self.front,self.rear = None,None
+
+    # METHOD TO INSERT ELEMENT IN QUEUE
     def enqueue(self,element):
         if(self.rear==None and self.front==None):
             self.rear=0
@@ -22,6 +25,9 @@ class queuel:
         else:
             self.rear = self.n - 1
             print('queue is full')
+
+
+    # METHOD TO REMOVE AND RETURN THE FRONT ELEMENT
     def dequeue(self):
         if(self.front==None and self.queue[0]!=None ):
             self.front=0
@@ -40,6 +46,8 @@ class queuel:
             self.rear = None
         elif(self.front!=None and self.queue[self.front+1]!=None): 
             self.front = self.front+1
+
+    # METHOD TO DISPLAY THE QUEUE
     def display(self):
         print(self.queue)
         print('\nfront = ',self.front)
