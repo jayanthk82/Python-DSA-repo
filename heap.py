@@ -1,14 +1,38 @@
 class min_heap:
-    def __init__(self):
+
+    def __init__(self,list1=None):
         self.heap = list()
+        self.list1 = list1
+
     def heapify_up(self,index):
         if index==0:
             return
         parent_index = int((index-1)/2)
         if self.heap[parent_index]>self.heap[index]:
             self.heap[parent_index],self.heap[index] = self.heap[index],self.heap[parent_index]
-            self.heapify_up(parent_index)
-    def heapify_down(self, index):
+            self.heapify_up(parent_index) 
+
+    def insert(self,element):
+        self.heap.append(element)
+        self.heapify_up(len(self.heap)-1)
+
+    def heapify_down(self,index):
+        left_child = 2*index+1
+        right_child = 2*index+2
+        smallest = index
+        if left_child < len(self.heap) and self.heap[left_child]<self.heap[smallest]:
+            smallest = left_child
+        if right_child < len(self.heap) and self.heap[right_child]<self.heap[smallest]:
+            smallest = right_child
+        if smallest != index:
+            self.heap[index],self.heap[smallest] = self.heap[smallest],self.heap[index]
+            self.heapify_down(smallest)
+
+    def down_top_heap(self):
+        for i in range(0, (len(self.heap) - 1) // 2):
+            self.build_heap(i)
+            
+    def build_heap(self, index):
         largest = index
         left_child = 2 * index + 1
         right_child = 2 * index + 2
@@ -21,37 +45,13 @@ class min_heap:
 
         if largest != index:
             self.heap[index], self.heap[largest] = self.heap[largest], self.heap[index]
-            self.heapify_down(largest)
-
-    def insert(self,key):    
-        self.heap.append(key)
-        self.heapify_up(len(self.heap)-1)
-
 
     def display(self):
         print(self.heap)
-    
-    def extract_min(self):
-        if len(self.heap)==0:
-            return None
-        if len(self.heap)==1:
-            return self.heap.pop()
-        min_element = self.heap[0]
-        self.heap[0] = self.heap.pop()
-        self.heapify_down(0)
-        return min_element
-        
 
-object = min_heap()
-object.insert(10)
-object.insert(19)
-object.insert(1)
-object.insert(11)
-object.insert(55)
-object.display() 
-min = object.extract_min()
-print(min)
-
+heap_topdown = min_heap()
+list1 = [1,2,3,4,5,6]
+heap_build = min_heap(list1)
 
      
 
