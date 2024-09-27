@@ -44,6 +44,7 @@ class HEAP:
             self.minheap[parent],self.minheap[index] = self.minheap[index],self.minheap[parent]
     def display(self):
         print(self.minheap)
+        
 list = [5,7,9,0,1,5,12,11]
 object = HEAP()
 object.insert(list)
