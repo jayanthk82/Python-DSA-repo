@@ -1,5 +1,4 @@
 import numpy as np
-
 def split(matrix):
     row, col = matrix.shape
     row2, col2 = row // 2, col // 2
@@ -8,7 +7,6 @@ def split(matrix):
 def strassen(A, B):
     if len(A) == 1:
         return A * B
-    
     A11, A12, A21, A22 = split(A)
     B11, B12, B21, B22 = split(B)
 
